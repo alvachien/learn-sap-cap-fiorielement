@@ -1,40 +1,27 @@
 # learn-sap-cap-fiorielement
-A learning project for following:
-- SAP CAP,
-- SAP Fiori Element
 
-## SAP CAP
+A learning project for SAP Cap and Fiori Element
 
-Official Document link is [here](https://cap.cloud.sap/).
+## Introudction
+### Branch `cap-java`
 
-Official repository is [here](https://github.com/SAP-samples/cloud-cap-samples).
+This branch `cap-java` is used for CAP Java implementation.
 
-## SAP Fiori Element
+### Official SAP Tutorial
 
-Official document link is [here](https://ui5.sap.com/#/topic/03265b0408e2432c9571d6b3feb6b1fd).
+The official SAP tutorial: [https://developers.sap.com/mission.cap-java-app.html](https://developers.sap.com/mission.cap-java-app.html)
 
-# Details
+## Steps
 
-## Folders
-It contains these folders and files, following our recommended project layout:
+### Step 1. Initial the project
 
-File or Folder | Purpose
----------|----------
-`app/` | content for UI frontends goes here
-`db/` | your domain models and data go here
-`srv/` | your service models and code go here
-`package.json` | project metadata and configuration
-`readme.md` | this getting started guide
+Run Maven commands to create project (with Java SDK 17):  
+
+```cmd
+mvn -B archetype:generate -DarchetypeArtifactId=cds-services-archetype -DarchetypeGroupId=com.sap.cds -DarchetypeVersion=RELEASE -DjdkVersion=11  -DgroupId=com.alvachien.learncap -DartifactId=products-service -Dpackage=com.alvachien.learncap.productsservice
+```
 
 
-## Next Steps
-
-- Open a new terminal and run `cds watch` 
-- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
-- Start adding content, for example, a [db/schema.cds](db/schema.cds).
 
 
-# Licence
-
-MIT
 
