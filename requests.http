@@ -1,0 +1,6 @@
+### Create Demo entity
+
+POST http://localhost:8080/odata/v4/DemoService/DemoEntity
+Content-Type: application/json
+
+{"ID": 42, "title": "My Tutorial Product", "descr": "You are doing an awesome job!"}
