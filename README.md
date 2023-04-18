@@ -17,6 +17,8 @@ The official SAP tutorial: [https://developers.sap.com/mission.cap-java-app.html
 
 Run Maven commands to create project (with Java SDK 17):  
 
+#### Using Maven archetype
+
 ```bash
 mvn -B archetype:generate -DarchetypeArtifactId=cds-services-archetype \ 
 -DarchetypeGroupId=com.sap.cds -DarchetypeVersion=RELEASE -DjdkVersion=11 \
@@ -29,12 +31,21 @@ The command above only works with `bash`. For Powershell:
 mvn org.apache.maven.plugins:maven-archetype-plugin:3.1.2:generate -DarchetypeArtifactId="cds-services-archetype" -DarchetypeGroupId="com.sap.cds" -DarchetypeVersion="1.32.0" -DgroupId="com.alvachien.learncap" -DartifactId="demo-service"
 ```
 
+#### Using Visual Studio Code 
+
 If the command is not working, using the `Command Palette...` in `Visual Studio Studio`, and input 'Java: Create Project',
 - Select 'Maven: create from archetype'
 - Enter archetype: `cds-service-archetype`
 
 The Visual Studio Code will find out the suitable version.
 
+#### Using `cds` comand
+
+From the [official documentation](https://cap.cloud.sap/docs/java/getting-started#run-the-cap-java-maven-archetype) 
+
+```cmd
+cds init <PROJECT-ROOT> --add java
+```
 
 ### Step 2. Create a service 
 
@@ -105,5 +116,4 @@ mvn clean spring-boot:run
 ```
 
 The default port is: 8080
-
 
