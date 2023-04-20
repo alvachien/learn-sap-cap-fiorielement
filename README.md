@@ -3,6 +3,7 @@
 A learning project for SAP Cap and Fiori Element
 
 ## Introudction
+
 ### Branch `cap-java`
 
 This branch `cap-java` is used for CAP Java implementation.
@@ -21,7 +22,7 @@ Run Maven commands to create project (with Java SDK 17):
 
 ```bash
 mvn -B archetype:generate -DarchetypeArtifactId=cds-services-archetype \ 
--DarchetypeGroupId=com.sap.cds -DarchetypeVersion=RELEASE -DjdkVersion=11 \
+-DarchetypeGroupId=com.sap.cds -DarchetypeVersion=RELEASE -DjdkVersion=17 \
 -DgroupId=com.alvachien.learncap -DartifactId=demo-service -Dpackage=com.alvachien.learncap.demoservice
 ```
 

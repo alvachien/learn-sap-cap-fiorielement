@@ -1,6 +1,5 @@
 namespace alvachien.learncap.db;
 
-
 using { Currency, cuid, managed, sap.common.CodeList } from '@sap/cds/common';
 
 entity Products : cuid, managed {
