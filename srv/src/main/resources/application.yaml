@@ -5,14 +5,13 @@
 #   datasource:
 #     auto-config.enabled: false
 ---
+---
 spring:
-  profiles: sqlite
-  sql:
-    init:
-      mode: never
+  config:
+    activate:
+      on-profile: sqlite
   datasource:
-    url: "jdbc:sqlite:sqlite.db"
+    url: "jdbc:sqlite:/db.sqlite"
     driver-class-name: org.sqlite.JDBC
     hikari:
       maximum-pool-size: 1
-

@@ -2,6 +2,12 @@ namespace alvachien.learncap.db;
 
 using { Currency, cuid, managed, sap.common.CodeList } from '@sap/cds/common';
 
+entity DBEntities {
+    key ID : Integer;
+    title  : String(111);
+    descr  : String(1111);
+}
+
 entity Products : cuid, managed {
     title    : localized String(111);
     descr    : localized String(1111);

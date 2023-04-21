@@ -118,3 +118,9 @@ mvn clean spring-boot:run
 
 The default port is: 8080
 
+
+## Enable Sqlite
+
+```cmd
+mvn spring-boot:run -D"spring-boot.run.profiles"=sqlite
+```
