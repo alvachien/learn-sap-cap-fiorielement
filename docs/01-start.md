@@ -1,4 +1,5 @@
 # 前置内容
+
 首先，得明白什么是CAP。用我自己的话来讲，CAP是SAP推出的、适配Cloud Native的编程框架。它提供了一系列架构层面的抽象，并提供了基于Nodejs和Java两个技术栈的实现。
    
 CAP的官方网站，点击[链接](https://cap.cloud.sap/docs/)访问。
@@ -113,7 +114,7 @@ mvn clean install
 
 命令运行成功后，项目中添加了一堆文件，主要在 `srv/src/resources/edmx` 下。
 
-![生成的文件](img/001.png)
+![生成的文件](./img/001.png)
 
 # 运行及测试
 
@@ -126,7 +127,7 @@ mvn clean install
 mvn clean spring-boot:run
 ```
 
-![打开浏览器](img/002.png)
+![打开浏览器](./img/002.png)
 
 打开`$metadata`链接可以查看详细的Odata Metadata文件。
 
@@ -137,4 +138,5 @@ mvn clean spring-boot:run
 这个Service已经可以正常运行。
 使用Postman来测试该项目。
 
-![Postman测试Post命令](img/003.png)
+![Postman测试Post命令](./img/003.png)
+

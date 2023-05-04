@@ -4,7 +4,7 @@
 
 值得提醒的是，SAP CAP生成的Java项目，在没有指定数据库的情况下，默认使用H2 In-memory数据库。
 
-![H2 Inmemory](img/004.png)
+![H2 Inmemory](./img/004.png)
 
 另外，一个有意思的点是，SAP官方文档中提及：
 > The CAP Java runtime is tested with PostgreSQL 12.
@@ -86,9 +86,9 @@ cds deploy --to sqlite
 
 可以在Visual Studio Code打开该文件来查看对应的数据库表是不是已经创建成功。还可以查看数据库中是否已经有初始化数据。
 
-![CDS deploy](img/005.png)
+![CDS deploy](./img/005.png)
 
-![DB表和数据](img/006.png)
+![DB表和数据](./img/006.png)
 
 
 这时可以发现`package.json`文件已经发生修改：  
