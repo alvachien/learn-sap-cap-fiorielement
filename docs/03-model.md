@@ -31,7 +31,14 @@ SAP CDS提供了许多high level的预定义项来简化建模。常用的有：
 - Temporal
 - Managed
 
-譬如，`Localized`可以用来定义支持多语言的项。这种支持是从SAP CDS语言深层次来支持的，包括从HTTP Request读出对应locale信息，以及使用该信息从数据库中读取合适的记录。关于`Localized`可以参考官方文档，点击[链接](https://cap.cloud.sap/docs/guides/localized-data)。
+### `localized`
+
+`Localized`可以用来定义支持多语言的项。这种支持是从SAP CDS语言深层次来支持的，包括从HTTP Request读出对应locale信息，以及使用该信息从数据库中读取合适的记录。关于`Localized`可以参考官方文档，点击[链接](https://cap.cloud.sap/docs/guides/localized-data)。
+
+### `Temporal`
+
+
+### `Managed`
 
 
 # 其他
