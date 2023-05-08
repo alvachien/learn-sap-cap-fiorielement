@@ -22,3 +22,8 @@ entity Categories : CodeList {
     parent   : Association to Categories;
     children : Composition of many Categories on children.parent = $self;
 }
+
+entity TestObjects: cuid, CodeList {
+    amount:     Decimal;
+    currency:   Currency;
+}

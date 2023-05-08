@@ -11,4 +11,6 @@ service DemoService {
     entity DBEntities as projection on db.DBEntities;
     entity Products   as projection on db.Products;
     entity Categories as projection on db.Categories;    
+
+    entity TestObjecs as projection on db.TestObjects;
 }
