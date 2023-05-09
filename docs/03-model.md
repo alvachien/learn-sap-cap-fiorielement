@@ -25,6 +25,7 @@ KISS是“Keep it simple, stupid!”的缩写，是另外一个SAP CAP遵循的D
 > **concise** = be on point, use short names, simple flat models, etc. 模型应该简洁明了，避免长名称。   
 > **comprehensible** = domain modeling is a means to an end; your clients and consumers are the ones who have to understand and work with your models the most, much more than you as their creator. Keep that in mind and understand the tasks of domain modeling as a service to others. 模型关键是便于使用者理解。
 
+
 ## Basic Types
 
 SAP CDS的基础类型：
@@ -134,9 +135,76 @@ entity TestObject: cuid, CodeList {
 
 ![Table1](./img/009.png)
 
-同时会生成一张Text的表来支持多语言：   
+同时会生成一张Text的表来支持多语言(`locale`就是对应Localization的Key)：   
 
 ![Table2](./img/010.png)
 
 
-# 其他
+# Assocation & Composition
+
+所谓的`Assocaiton`跟`Composition`，就是Entity之间的关联关系。
+
+## 0..1的关联关系
+
+譬如，`EntityA`跟`EntityB`的0..1的关联关系，定义如下。
+
+```cds
+entity EntityA {
+  rel : Association to EntityB;
+}
+
+entity EntityB: cuid {
+  ...
+}
+```
+
+数据库中，列`rel`并不存在，而是类似于`rel_ID`——这里取决于`EntityB`的`key`名称。
+
+## 0..N的关联关系
+
+同上例，
+
+```cds
+entity EntityA: cuid {  
+  rel : Association to many EntityB
+    on rel.relation = $self;
+}
+
+entity EntityB: cuid {
+  relation : Association to EntityA;  //> the backlink
+}
+```
+
+同上，数据库中的`foreign key`的列，名称由关联Entity的key决定。
+
+
+## M..N的关联关系
+
+继续，创建M..N的关联关系：
+
+```cds
+entity EntityA: cuid {  
+  rel : Association to many EntityABBridge
+    on rel.relA = $self;
+}
+
+entity EntityABBridge {
+  key relA : Association to EntityA;
+  key relB : Association to EntityB;
+}
+```
+
+## Composition
+
+其实Composition就是一种类型的`0..N`的关联关系，但它是双向的。
+
+```cds
+entity EntityA: cuid {
+  Items : Composition of many EntityA.Items on Items.parent = $self;
+}
+
+entity EntityA.Items: cuid {
+  key parent : Association to EntityA;
+  ...
+}
+```
