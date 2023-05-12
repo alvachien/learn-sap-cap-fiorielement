@@ -1,1 +1,1 @@
-mvn spring-boot:run -D"spring-boot.run.profiles"=sqlite
+mvn clean spring-boot:run -D"spring-boot.run.profiles"=sqlite
