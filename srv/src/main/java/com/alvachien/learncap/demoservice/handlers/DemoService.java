@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.sap.cds.services.cds.CdsCreateEventContext;
 import com.sap.cds.services.cds.CdsReadEventContext;
-import com.sap.cds.services.cds.CdsService;
-import com.sap.cds.services.handler.EventHandler;
+import com.sap.cds.services.cds.CqnService;
 import com.sap.cds.services.handler.annotations.On;
 import com.sap.cds.services.handler.annotations.ServiceName;
 
@@ -17,13 +16,13 @@ import com.sap.cds.services.handler.annotations.ServiceName;
 public class DemoService {
     private Map<Object, Map<String, Object>> dataInMemory = new HashMap<>();
 
-    @On(event = CdsService.EVENT_CREATE, entity = "DemoService.DemoEntity")
+    @On(event = CqnService.EVENT_CREATE, entity = "DemoService.DemoEntity")
     public void onCreate(CdsCreateEventContext context) {
         context.getCqn().entries().forEach(e -> dataInMemory.put(e.get("ID"), e));
         context.setResult(context.getCqn().entries());
     }
 
-    @On(event = CdsService.EVENT_READ, entity = "DemoService.DemoEntity")
+    @On(event = CqnService.EVENT_READ, entity = "DemoService.DemoEntity")
     public void onRead(CdsReadEventContext context) {
         context.setResult(dataInMemory.values());
     }    

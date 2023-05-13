@@ -15,7 +15,7 @@
       "db": {
         "kind": "sqlite",
         "credentials": {
-          "database": "db.sqlite"
+          "database": "sqlite.db"
         }
       }
     }

@@ -11,7 +11,11 @@ spring:
     activate:
       on-profile: sqlite
   datasource:
-    url: "jdbc:sqlite:/db.sqlite"
     driver-class-name: org.sqlite.JDBC
+    url: "jdbc:sqlite::resource:sqlite.db"
     hikari:
       maximum-pool-size: 1
+cds:
+  data-source:
+    auto-config.enabled: false
+
