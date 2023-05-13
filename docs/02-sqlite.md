@@ -79,10 +79,10 @@ service DemoService {
 现在，可以创建数据库了。
 
 ```cmd
-cds deploy --to sqlite
+cds deploy --to sqlite:./srv/src/main/resources/db/sqlite.db
 ```
 
-执行上述命令之后，会在项目的根目录下创建了`db.sqlite`文件。
+执行上述命令之后，会在项目的目录`srv/src/main/resources/db`下创建了`sqlite.db`文件。
 
 可以在Visual Studio Code打开该文件来查看对应的数据库表是不是已经创建成功。还可以查看数据库中是否已经有初始化数据。
 
@@ -99,7 +99,7 @@ cds deploy --to sqlite
       "db": {
         "kind": "sqlite",
         "credentials": {
-          "database": "db.sqlite"
+          "database": "./srv/src/main/resources/db/sqlite.db"
         }
       }
     }
@@ -114,11 +114,8 @@ cds deploy --to sqlite
 ```yml
 ---
 spring:
-  config:
-    activate:
-      on-profile: sqlite
   datasource:
-    url: "jdbc:sqlite:/db.sqlite"
+    url: "jdbc:sqlite::resource:db/sqlite.db"
     driver-class-name: org.sqlite.JDBC
     hikari:
       maximum-pool-size: 1
@@ -126,10 +123,10 @@ spring:
 
 # 运行程序
 
-通过Maven命令来运行程序，并指定使用sqlite：
+通过Maven命令来运行程序，并指定使用`sqlite`：
 
 ```cmd
-mvn spring-boot:run -D"spring-boot.run.profiles"=sqlite
+mvn spring-boot:run
 ```
 
-这时还可以使用Postman来进行测试，并确认数据库表是不是被更新。虽然一行代码没写，SAP CAP已经全部默认实现了。
+这时还可以使用Postman来进行测试，并确认数据库表是不是被更新。虽然一行代码没写，`SAP CAP`已经全部默认实现了。

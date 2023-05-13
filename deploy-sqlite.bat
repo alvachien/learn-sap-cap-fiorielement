@@ -1,0 +1,1 @@
+cds deploy --to sqlite:./srv/src/main/resources/db/sqlite.db

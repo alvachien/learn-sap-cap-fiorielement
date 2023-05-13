@@ -15,7 +15,7 @@
       "db": {
         "kind": "sqlite",
         "credentials": {
-          "database": "sqlite.db"
+          "database": "./srv/src/main/resources/db/sqlite.db"
         }
       }
     }
