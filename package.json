@@ -10,10 +10,12 @@
     "express": "^4"
   },
   "devDependencies": {
+    "@sap/ux-specification": "^1.108.5",
     "sqlite3": "^5.0.4"
   },
   "scripts": {
-    "start": "cds run"
+    "start": "cds run",
+    "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "engines": {
     "node": "^16.15"
@@ -48,9 +50,12 @@
       "db": {
         "kind": "sqlite",
         "credentials": {
-          "database": "db.sqlite"
+          "database": "sqlite.db"
         }
       }
     }
-  }
+  },
+  "sapux": [
+    "app/project1"
+  ]
 }

@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="FlowsService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="CompanyCodes" EntityType="FlowsService.CompanyCodes">
+                    <NavigationPropertyBinding Path="texts" Target="CompanyCodes_texts"/>
+                    <NavigationPropertyBinding Path="localized" Target="CompanyCodes_texts"/>
+                </EntitySet>
+                <EntitySet Name="ReportCycles" EntityType="FlowsService.ReportCycles"/>
+                <EntitySet Name="ActualFlows" EntityType="FlowsService.ActualFlows">
+                    <NavigationPropertyBinding Path="companyCode" Target="CompanyCodes"/>
+                    <NavigationPropertyBinding Path="currency" Target="Currencies"/>
+                </EntitySet>
+                <EntitySet Name="ActualFlowLists" EntityType="FlowsService.ActualFlowLists">
+                    <NavigationPropertyBinding Path="currency" Target="Currencies"/>
+                </EntitySet>
+                <EntitySet Name="CompanyCodeLists" EntityType="FlowsService.CompanyCodeLists">
+                    <NavigationPropertyBinding Path="cycels" Target="ReportCycles"/>
+                    <NavigationPropertyBinding Path="flowLists" Target="ActualFlowLists"/>
+                </EntitySet>
+                <EntitySet Name="Currencies" EntityType="FlowsService.Currencies">
+                    <NavigationPropertyBinding Path="texts" Target="Currencies_texts"/>
+                    <NavigationPropertyBinding Path="localized" Target="Currencies_texts"/>
+                </EntitySet>
+                <EntitySet Name="CompanyCodes_texts" EntityType="FlowsService.CompanyCodes_texts"/>
+                <EntitySet Name="Currencies_texts" EntityType="FlowsService.Currencies_texts"/>
+            </EntityContainer>
+            <EntityType Name="CompanyCodes">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="ID" Type="Edm.String" Nullable="false"/>
+                <NavigationProperty Name="texts" Type="Collection(FlowsService.CompanyCodes_texts)">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="localized" Type="FlowsService.CompanyCodes_texts">
+                    <ReferentialConstraint Property="ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="ReportCycles">
+                <Key>
+                    <PropertyRef Name="companyCodeID"/>
+                    <PropertyRef Name="cycleID"/>
+                </Key>
+                <Property Name="companyCodeID" Type="Edm.String" Nullable="false"/>
+                <Property Name="cycleID" Type="Edm.String" Nullable="false"/>
+                <Property Name="dateFrom" Type="Edm.Date"/>
+                <Property Name="dateTo" Type="Edm.Date"/>
+            </EntityType>
+            <EntityType Name="ActualFlows">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="companyCode" Type="FlowsService.CompanyCodes">
+                    <ReferentialConstraint Property="companyCode_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="companyCode_ID" Type="Edm.String"/>
+                <Property Name="transactionDate" Type="Edm.Date"/>
+                <Property Name="amount" Type="Edm.Decimal" Scale="variable"/>
+                <NavigationProperty Name="currency" Type="FlowsService.Currencies">
+                    <ReferentialConstraint Property="currency_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="currency_code" Type="Edm.String" MaxLength="3"/>
+                <Property Name="liquidityItem" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="ActualFlowLists">
+                <Key>
+                    <PropertyRef Name="companyCodeID"/>
+                    <PropertyRef Name="liquidityItem"/>
+                    <PropertyRef Name="flowType"/>
+                </Key>
+                <Property Name="companyCodeID" Type="Edm.String" Nullable="false"/>
+                <Property Name="liquidityItem" Type="Edm.String" Nullable="false"/>
+                <Property Name="flowType" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="currency" Type="FlowsService.Currencies">
+                    <ReferentialConstraint Property="currency_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="currency_code" Type="Edm.String" MaxLength="3"/>
+                <Property Name="amount1" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount2" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount3" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount4" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount5" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount6" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount7" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount8" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount9" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount10" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount11" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount12" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount13" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount14" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount15" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount16" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount17" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount18" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount19" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount20" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount21" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount22" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount23" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount24" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount25" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount26" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount27" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount28" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount29" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount30" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="amount31" Type="Edm.Decimal" Scale="variable"/>
+            </EntityType>
+            <EntityType Name="CompanyCodeLists">
+                <Key>
+                    <PropertyRef Name="companyCodeID"/>
+                </Key>
+                <Property Name="companyCodeID" Type="Edm.String" Nullable="false"/>
+                <Property Name="companyCodeName" Type="Edm.String"/>
+                <NavigationProperty Name="cycels" Type="Collection(FlowsService.ReportCycles)"/>
+                <Property Name="cycels_companyCodeID" Type="Edm.String"/>
+                <Property Name="cycels_cycleID" Type="Edm.String"/>
+                <NavigationProperty Name="flowLists" Type="Collection(FlowsService.ActualFlowLists)"/>
+                <Property Name="flowLists_companyCodeID" Type="Edm.String"/>
+                <Property Name="flowLists_liquidityItem" Type="Edm.String"/>
+                <Property Name="flowLists_flowType" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="Currencies">
+                <Key>
+                    <PropertyRef Name="code"/>
+                </Key>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="symbol" Type="Edm.String" MaxLength="5"/>
+                <NavigationProperty Name="texts" Type="Collection(FlowsService.Currencies_texts)">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="localized" Type="FlowsService.Currencies_texts">
+                    <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="CompanyCodes_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="ID" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="Currencies_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="code"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.String" MaxLength="3" Nullable="false"/>
+            </EntityType>
+            <Annotations Target="FlowsService.CompanyCodes">
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="name"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="FlowsService.CompanyCodes/name">
+                <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                </Annotations>
+                <Annotations Target="FlowsService.CompanyCodes/descr">
+                    <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                    </Annotations>
+                    <Annotations Target="FlowsService.ActualFlows/createdAt">
+                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                        <Annotation Term="Core.Immutable" Bool="true"/>
+                        <Annotation Term="Core.Computed" Bool="true"/>
+                        <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                        </Annotations>
+                        <Annotations Target="FlowsService.ActualFlows/createdBy">
+                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                            <Annotation Term="Core.Immutable" Bool="true"/>
+                            <Annotation Term="Core.Computed" Bool="true"/>
+                            <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                </Annotations>
+                                <Annotations Target="FlowsService.ActualFlows/modifiedAt">
+                                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                    <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                                    </Annotations>
+                                    <Annotations Target="FlowsService.ActualFlows/modifiedBy">
+                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                        <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                            <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                            </Annotations>
+                                            <Annotations Target="FlowsService.ActualFlows/companyCode_ID">
+                                                <Annotation Term="Common.ValueList">
+                                                    <Record Type="Common.ValueListType">
+                                                        <PropertyValue Property="Label" String="CompanyCodes"/>
+                                                        <PropertyValue Property="CollectionPath" String="CompanyCodes"/>
+                                                        <PropertyValue Property="Parameters">
+                                                            <Collection>
+                                                                <Record Type="Common.ValueListParameterInOut">
+                                                                    <PropertyValue Property="LocalDataProperty" PropertyPath="companyCode_ID"/>
+                                                                    <PropertyValue Property="ValueListProperty" String="ID"/>
+                                                                </Record>
+                                                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                                                </Record>
+                                                            </Collection>
+                                                        </PropertyValue>
+                                                    </Record>
+                                                </Annotation>
+                                            </Annotations>
+                                            <Annotations Target="FlowsService.ActualFlows/currency">
+                                                <Annotation Term="Common.Label" String="{i18n>Currency}"/>
+                                                    <Annotation Term="Core.Description" String="{i18n>CurrencyCode.Description}"/>
+                                                    </Annotations>
+                                                    <Annotations Target="FlowsService.ActualFlows/currency_code">
+                                                        <Annotation Term="Common.Label" String="{i18n>Currency}"/>
+                                                            <Annotation Term="Common.ValueList">
+                                                                <Record Type="Common.ValueListType">
+                                                                    <PropertyValue Property="Label" String="{i18n>Currency}"/>
+                                                                        <PropertyValue Property="CollectionPath" String="Currencies"/>
+                                                                        <PropertyValue Property="Parameters">
+                                                                            <Collection>
+                                                                                <Record Type="Common.ValueListParameterInOut">
+                                                                                    <PropertyValue Property="LocalDataProperty" PropertyPath="currency_code"/>
+                                                                                    <PropertyValue Property="ValueListProperty" String="code"/>
+                                                                                </Record>
+                                                                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                                                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                                                                </Record>
+                                                                            </Collection>
+                                                                        </PropertyValue>
+                                                                    </Record>
+                                                                </Annotation>
+                                                                <Annotation Term="Core.Description" String="{i18n>CurrencyCode.Description}"/>
+                                                                </Annotations>
+                                                                <Annotations Target="FlowsService.ActualFlowLists/currency">
+                                                                    <Annotation Term="Common.Label" String="{i18n>Currency}"/>
+                                                                        <Annotation Term="Core.Description" String="{i18n>CurrencyCode.Description}"/>
+                                                                        </Annotations>
+                                                                        <Annotations Target="FlowsService.ActualFlowLists/currency_code">
+                                                                            <Annotation Term="Common.Label" String="{i18n>Currency}"/>
+                                                                                <Annotation Term="Common.ValueList">
+                                                                                    <Record Type="Common.ValueListType">
+                                                                                        <PropertyValue Property="Label" String="{i18n>Currency}"/>
+                                                                                            <PropertyValue Property="CollectionPath" String="Currencies"/>
+                                                                                            <PropertyValue Property="Parameters">
+                                                                                                <Collection>
+                                                                                                    <Record Type="Common.ValueListParameterInOut">
+                                                                                                        <PropertyValue Property="LocalDataProperty" PropertyPath="currency_code"/>
+                                                                                                        <PropertyValue Property="ValueListProperty" String="code"/>
+                                                                                                    </Record>
+                                                                                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                                                                                        <PropertyValue Property="ValueListProperty" String="name"/>
+                                                                                                    </Record>
+                                                                                                </Collection>
+                                                                                            </PropertyValue>
+                                                                                        </Record>
+                                                                                    </Annotation>
+                                                                                    <Annotation Term="Core.Description" String="{i18n>CurrencyCode.Description}"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="FlowsService.Currencies">
+                                                                                        <Annotation Term="UI.Identification">
+                                                                                            <Collection>
+                                                                                                <Record Type="UI.DataField">
+                                                                                                    <PropertyValue Property="Value" Path="name"/>
+                                                                                                </Record>
+                                                                                            </Collection>
+                                                                                        </Annotation>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="FlowsService.Currencies/name">
+                                                                                        <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                        </Annotations>
+                                                                                        <Annotations Target="FlowsService.Currencies/descr">
+                                                                                            <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                            </Annotations>
+                                                                                            <Annotations Target="FlowsService.Currencies/code">
+                                                                                                <Annotation Term="Common.Text" Path="name"/>
+                                                                                                <Annotation Term="Common.Label" String="{i18n>CurrencyCode}"/>
+                                                                                                </Annotations>
+                                                                                                <Annotations Target="FlowsService.Currencies/symbol">
+                                                                                                    <Annotation Term="Common.Label" String="{i18n>CurrencySymbol}"/>
+                                                                                                    </Annotations>
+                                                                                                    <Annotations Target="FlowsService.CompanyCodes_texts/locale">
+                                                                                                        <Annotation Term="Common.Label" String="{i18n>LanguageCode}"/>
+                                                                                                        </Annotations>
+                                                                                                        <Annotations Target="FlowsService.CompanyCodes_texts/name">
+                                                                                                            <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                                            </Annotations>
+                                                                                                            <Annotations Target="FlowsService.CompanyCodes_texts/descr">
+                                                                                                                <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                                                </Annotations>
+                                                                                                                <Annotations Target="FlowsService.Currencies_texts/locale">
+                                                                                                                    <Annotation Term="Common.Label" String="{i18n>LanguageCode}"/>
+                                                                                                                    </Annotations>
+                                                                                                                    <Annotations Target="FlowsService.Currencies_texts/name">
+                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                                                        </Annotations>
+                                                                                                                        <Annotations Target="FlowsService.Currencies_texts/descr">
+                                                                                                                            <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                                                            </Annotations>
+                                                                                                                            <Annotations Target="FlowsService.Currencies_texts/code">
+                                                                                                                                <Annotation Term="Common.Text" Path="name"/>
+                                                                                                                                <Annotation Term="Common.Label" String="{i18n>CurrencyCode}"/>
+                                                                                                                                </Annotations>
+                                                                                                                            </Schema>
+                                                                                                                        </edmx:DataServices>
+                                                                                                                    </edmx:Edmx>
