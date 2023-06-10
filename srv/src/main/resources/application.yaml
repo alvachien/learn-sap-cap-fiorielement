@@ -1,13 +1,7 @@
-#---
-# spring:
-#   config.activate.on-profile: default
-# cds:
-#   datasource:
-#     auto-config.enabled: false
----
 spring:
   datasource:
     driver-class-name: org.sqlite.JDBC
     url: jdbc:sqlite::resource:db/sqlite.db
     hikari:
       maximum-pool-size: 1
+  web.resources.static-locations: file:./app/
