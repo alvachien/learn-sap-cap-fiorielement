@@ -1,14 +1,8 @@
 namespace alvachien.learncap.db;
 
-using { Currency, cuid, managed, sap.common.CodeList } from '@sap/cds/common';
+using { Currency, cuid, managed, sap.common.CodeList, User } from '@sap/cds/common';
 
-entity DBEntities {
-    key ID : Integer;
-    title  : String(111);
-    descr  : String(1111);
-}
-
-entity Products : cuid, managed {
+entity Books : cuid, managed {
     title    : localized String(111);
     descr    : localized String(1111);
     stock    : Integer;
@@ -23,7 +17,7 @@ entity Categories : CodeList {
     children : Composition of many Categories on children.parent = $self;
 }
 
-entity TestObjects: cuid, CodeList {
-    amount:     Decimal;
-    currency:   Currency;
+entity WishLists: managed {
+    key userID  : User;
+    key book    : Association to  Books;
 }

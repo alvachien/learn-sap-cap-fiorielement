@@ -12,17 +12,17 @@ import com.sap.cds.services.handler.annotations.On;
 import com.sap.cds.services.handler.annotations.ServiceName;
 
 @Component
-@ServiceName("DemoService")
-public class DemoService {
+@ServiceName("BookService")
+public class BookService {
     private Map<Object, Map<String, Object>> dataInMemory = new HashMap<>();
 
-    @On(event = CqnService.EVENT_CREATE, entity = "DemoService.DemoEntity")
+    @On(event = CqnService.EVENT_CREATE, entity = "BookService.DemoEntity")
     public void onCreate(CdsCreateEventContext context) {
         context.getCqn().entries().forEach(e -> dataInMemory.put(e.get("ID"), e));
         context.setResult(context.getCqn().entries());
     }
 
-    @On(event = CqnService.EVENT_READ, entity = "DemoService.DemoEntity")
+    @On(event = CqnService.EVENT_READ, entity = "BookService.DemoEntity")
     public void onRead(CdsReadEventContext context) {
         context.setResult(dataInMemory.values());
     }    
