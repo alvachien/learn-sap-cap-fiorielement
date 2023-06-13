@@ -6,7 +6,7 @@ spring:
     url: jdbc:sqlite::resource:db/sqlite.db
     hikari:
       maximum-pool-size: 1
-  web.resources.static-locations: "file:./app"
+  web.resources.static-locations: "file:./app/"
   jmx:
     enabled: true
 ---

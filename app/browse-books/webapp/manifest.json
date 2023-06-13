@@ -9,8 +9,8 @@
             "version": "1.0.0"
         },
         "dataSources": {
-            "AdminService": {
-                "uri": "/odata/v4/admin/",
+            "BookService": {
+                "uri": "/odata/v4/BookService/",
                 "type": "OData",
                 "settings": {
                     "odataVersion": "4.0"
@@ -47,7 +47,7 @@
                 "uri": "i18n/i18n.properties"
             },
             "": {
-                "dataSource": "AdminService",
+                "dataSource": "BookService",
                 "settings": {
                     "synchronizationMode": "None",
                     "operationMode": "Server",

@@ -10,7 +10,7 @@
         },
         "dataSources": {
             "AdminService": {
-                "uri": "/api/admin/",
+                "uri": "/odata/v4/AdminService/",
                 "type": "OData",
                 "settings": {
                     "odataVersion": "4.0"
