@@ -1,14 +1,14 @@
 ---
 spring:
   config.activate.on-profile: sqlite
+  web.resources.static-locations: "file:./app/"
+  jmx:
+    enabled: true
   datasource:
     driver-class-name: org.sqlite.JDBC
     url: jdbc:sqlite::resource:db/sqlite.db
     hikari:
       maximum-pool-size: 1
-  web.resources.static-locations: "file:./app/"
-  jmx:
-    enabled: true
 ---
 spring:
   profiles.active: sqlite
