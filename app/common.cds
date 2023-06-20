@@ -1,3 +1,5 @@
+using { sap.common as common } from '@sap/cds/common';
+using { cuid } from '@sap/cds/common';
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -86,44 +88,20 @@ annotate common.Currencies with
             Label : '{i18n>Details}',
             Target : '@UI.FieldGroup#Details'
         },
-        {
-            $Type : 'UI.ReferenceFacet',
-            Label : '{i18n>Extended}',
-            Target : '@UI.FieldGroup#Extended'
-        },
     ],
     FieldGroup #Details : {Data : [
         {Value : name},
         {Value : symbol},
         {Value : code},
         {Value : descr}
-    ]},
-    FieldGroup #Extended : {Data : [
-        {Value : numcode},
-        {Value : minor},
-        {Value : exponent}
-    ]},
+    ]}
 });
 
 
 ////////////////////////////////////////////////////////////////////////////
 //
-//	Currencies Elements
-//
-annotate common.Currencies with {
-    numcode
-    @title : '{i18n>NumCode}';
-    minor
-    @title : '{i18n>MinorUnit}';
-    exponent
-    @title : '{i18n>Exponent}';
-}
-
-////////////////////////////////////////////////////////////////////////////
-//
 //	Fiori requires generated IDs to be annotated with @Core.Computed
 //
-using {cuid} from '@sap/cds/common';
 
 annotate cuid with {
     ID

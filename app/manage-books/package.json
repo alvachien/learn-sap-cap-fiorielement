@@ -1,13 +1,15 @@
 {
     "name": "manage-books",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
+    "version": "0.0.1",
+    "description": "A Fiori application.",
+    "keywords": [
+        "ui5",
+        "openui5",
+        "sapui5"
+    ],
+    "main": "webapp/index.html",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf"
     },
-    "keywords": [],
-    "author": "",
-    "license": "ISC"
+    "devDependencies": { }
 }
-  

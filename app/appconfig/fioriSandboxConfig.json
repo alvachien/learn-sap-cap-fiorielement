@@ -62,7 +62,7 @@
                             },
                             "resolutionResult": {
                               "applicationType": "SAPUI5",
-                              "additionalInformation": "SAPUI5.Component=ManageBooks",
+                              "additionalInformation": "SAPUI5.Component=managebooks",
                               "url": "/manage-books/webapp"
                             }
                         },
